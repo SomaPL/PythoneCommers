@@ -2,11 +2,10 @@ from fastapi import APIRouter, HTTPException
 from app.models.product import Product
 from app.services.product_service import ProductService
 from app.repositories.product_repository import ProductRepository
+from app.dependencies import product_service
 
 router = APIRouter(prefix="/products", tags=["products"])
 
-product_repository = ProductRepository()
-product_service = ProductService(product_repository)
 
 @router.post("/", response_model=Product)
 def create_product(product: Product):
